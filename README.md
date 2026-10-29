@@ -1,18 +1,16 @@
 <div align="center">
 
- <h1>Qwen Coding Agent</h1>
+  <h1>Qwen Code Interface</h1>
 
-  <p><b>Autonomous Coding & Repository Engineering Agent powered by Qwen 2.5 Coder</b></p>
+  <p><b>A lightweight desktop interface for local text generation and codebase refactoring</b></p>
 
   <p>
-    An agentic software engineering harness designed for autonomous codebase exploration, AST-aware refactoring, automated bug resolution, and unit test synthesis powered by local and cloud Qwen 2.5 Coder neural models.
+    A Python-based developer tool designed for local text generation, AST-aware refactoring, syntax checking, and automated test execution.
   </p>
 
   <p>
-    <a href="https://github.com/QwenLM/Qwen2.5-Coder"><img src="https://img.shields.io/badge/Model-Qwen_2.5_Coder-blue?style=for-the-badge&logo=openai&logoColor=white" alt="Qwen 2.5 Coder" /></a>
-    <a href="https://ollama.com"><img src="https://img.shields.io/badge/Local_Inference-Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" /></a>
     <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11" /></a>
-    <a href="https://openrouter.ai"><img src="https://img.shields.io/badge/Cloud-OpenRouter-6366F1?style=for-the-badge" alt="OpenRouter" /></a>
+    <a href="https://ollama.com"><img src="https://img.shields.io/badge/Runtime-Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" /></a>
   </p>
 
@@ -22,54 +20,41 @@
 
 ## Overview
 
-**Qwen Coding Agent** is an agentic coding framework engineered around the state-of-the-art **Qwen 2.5 Coder** model family (ranging from 1.5B, 7B, 14B up to 32B parameters). 
+**Qwen Code Interface** provides a developer interface for running local text generation models and automating multi-file editing and verification workflows.
 
-It empowers developers to connect their terminal, IDE, or CI pipelines to an autonomous agent capable of recursive file tree exploration, syntax-validated code editing, dependency analysis, and automated test-driven repair cycles.
+Built with Python, it provides tools for directory navigation, regex editing, terminal execution, and test-driven validation.
 
 ---
 
 ## Key Features
 
-- **Optimized for Qwen 2.5 Coder** — Pre-configured system prompts and tool-calling schemas tailored to Qwen's specific ChatML tokenizer and function-calling tokens.
-- **100% Offline Local Inference** — Seamless integration with **Ollama**, **vLLM**, and **llama.cpp** for private, on-device code generation without cloud API dependencies.
-- **Hybrid Cloud Gateway** — Optional fallback to high-throughput cloud endpoints via OpenRouter, Together AI, or Alibaba Cloud DashScope.
-- **Tool-Calling Architecture** — Includes standardized tool definitions for file reading, contiguous multi-line regex editing, terminal execution, and ripgrep searches.
-- **Self-Healing Test Cycles** — Executes test commands automatically upon code modification, capturing stack traces to iteratively patch errors until green.
-- **Safety Boundaries** — Configurable workspace sandboxing and non-destructive git branch isolation.
+- **Offline Local Execution** — Connects directly to local model runtimes via Ollama for on-device generation without external network dependencies.
+- **AST Refactoring & Regex Editing** — Targeted file modification using contiguous multi-line regex match and syntax tree verification.
+- **Automated Test Validation** — Automatically executes test commands against modified files and reports runtime traces.
+- **Workspace Sandboxing** — Non-destructive directory isolation to protect untracked files during automated operations.
 
 ---
 
-## Agent Workflow
+## Workflow
 
 ```mermaid
 graph TD
-    User([User Prompt / Task]) --> AgentCore[Qwen Coding Agent Core]
+    User([Task / Prompt]) --> Core[Execution Engine]
     
-    AgentCore --> ToolRouter{Tool Selection}
-    ToolRouter --> ReadFile[Codebase Explorer & Grep]
-    ToolRouter --> EditFile[Contiguous Multi-Line Editor]
-    ToolRouter --> RunTerminal[Test & Compiler Execution]
+    Core --> Router{Tool Dispatch}
+    Router --> ReadFile[File Search & Reader]
+    Router --> EditFile[Contiguous Multi-Line Editor]
+    Router --> RunTerminal[Test & Compiler Execution]
     
     ReadFile --> Context[Context Accumulator]
     EditFile --> TestRunner[Test Verification]
     RunTerminal --> TestRunner
     
     TestRunner --> ErrorCheck{Tests Pass?}
-    ErrorCheck -->|No| SelfHealing[Error Reflection & Fix Prompt]
-    SelfHealing --> AgentCore
-    ErrorCheck -->|Yes| Complete([Task Complete & Commit])
+    ErrorCheck -->|No| FixLoop[Error Trace Analysis]
+    FixLoop --> Core
+    ErrorCheck -->|Yes| Complete([Complete & Save])
 ```
-
----
-
-## Supported Models
-
-| Tier | Recommended Model | Best Use Case | RAM / VRAM Required |
-| :--- | :--- | :--- | :--- |
-| **Lightweight** | `qwen2.5-coder:1.5b` | Quick inline autocompletion & syntax checking | ~2 GB |
-| **Balanced** | `qwen2.5-coder:7b` | General refactoring, bug fixes & unit tests | ~6 GB |
-| **Flagship Local** | `qwen2.5-coder:14b` | Complex architecture & multi-file reasoning | ~12 GB |
-| **Frontier Local** | `qwen2.5-coder:32b` | Full project synthesis & deep algorithmic debugging | ~24 GB |
 
 ---
 
@@ -87,16 +72,14 @@ graph TD
    cd Qwen-Coding-Agent
    ```
 
-2. **Pull the Qwen 2.5 Coder model**:
+2. **Pull model weights**:
    ```bash
- # Pull your preferred model size
    ollama pull qwen2.5-coder:7b
    ```
 
-3. **Configure environment (Optional Cloud Mode)**:
+3. **Install dependencies**:
    ```bash
-   export OPENROUTER_API_KEY="your_api_key_here"
-   export MODEL_NAME="qwen/qwen-2.5-coder-32b-instruct"
+   pip install -r requirements.txt
    ```
 
 ---
