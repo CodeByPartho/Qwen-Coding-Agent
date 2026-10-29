@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1>🤖 Qwen Coding Agent</h1>
+ <h1>Qwen Coding Agent</h1>
 
   <p><b>Autonomous Coding & Repository Engineering Agent powered by Qwen 2.5 Coder</b></p>
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 **Qwen Coding Agent** is an agentic coding framework engineered around the state-of-the-art **Qwen 2.5 Coder** model family (ranging from 1.5B, 7B, 14B up to 32B parameters). 
 
@@ -28,18 +28,18 @@ It empowers developers to connect their terminal, IDE, or CI pipelines to an aut
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-- 🧠 **Optimized for Qwen 2.5 Coder** — Pre-configured system prompts and tool-calling schemas tailored to Qwen's specific ChatML tokenizer and function-calling tokens.
-- 💻 **100% Offline Local Inference** — Seamless integration with **Ollama**, **vLLM**, and **llama.cpp** for private, on-device code generation without cloud API dependencies.
-- 🌐 **Hybrid Cloud Gateway** — Optional fallback to high-throughput cloud endpoints via OpenRouter, Together AI, or Alibaba Cloud DashScope.
-- 🛠️ **Tool-Calling Architecture** — Includes standardized tool definitions for file reading, contiguous multi-line regex editing, terminal execution, and ripgrep searches.
-- 🔁 **Self-Healing Test Cycles** — Executes test commands automatically upon code modification, capturing stack traces to iteratively patch errors until green.
-- 🛡️ **Safety Boundaries** — Configurable workspace sandboxing and non-destructive git branch isolation.
+- **Optimized for Qwen 2.5 Coder** — Pre-configured system prompts and tool-calling schemas tailored to Qwen's specific ChatML tokenizer and function-calling tokens.
+- **100% Offline Local Inference** — Seamless integration with **Ollama**, **vLLM**, and **llama.cpp** for private, on-device code generation without cloud API dependencies.
+- **Hybrid Cloud Gateway** — Optional fallback to high-throughput cloud endpoints via OpenRouter, Together AI, or Alibaba Cloud DashScope.
+- **Tool-Calling Architecture** — Includes standardized tool definitions for file reading, contiguous multi-line regex editing, terminal execution, and ripgrep searches.
+- **Self-Healing Test Cycles** — Executes test commands automatically upon code modification, capturing stack traces to iteratively patch errors until green.
+- **Safety Boundaries** — Configurable workspace sandboxing and non-destructive git branch isolation.
 
 ---
 
-## 🏗️ Agent Workflow
+## Agent Workflow
 
 ```mermaid
 graph TD
@@ -62,7 +62,7 @@ graph TD
 
 ---
 
-## 🛠️ Supported Models
+## Supported Models
 
 | Tier | Recommended Model | Best Use Case | RAM / VRAM Required |
 | :--- | :--- | :--- | :--- |
@@ -73,7 +73,7 @@ graph TD
 
 ---
 
-## 💻 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Python**: `>= 3.10`
@@ -89,7 +89,7 @@ graph TD
 
 2. **Pull the Qwen 2.5 Coder model**:
    ```bash
-   # Pull your preferred model size
+ # Pull your preferred model size
    ollama pull qwen2.5-coder:7b
    ```
 
@@ -101,10 +101,10 @@ graph TD
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **[MIT License](LICENSE)**.
 
 ---
 
-<p align="center">Made with ❤️ by Partho</p>
+<p align="center">Built by Partho</p>
